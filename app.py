@@ -120,13 +120,8 @@ def distance_in_radius(loc1, loc2, radius):
 
 def notify_user(user, event):
     SUBJECT = "Needle Exchange Event Near You"
-    MESSAGE = ("""
-    You are recieving this message to notify you about a needle exchange event. 
-    Click the link below to see more information.
+    MESSAGE = ("You are recieving this message to notify you about a needle exchange event.\nSee below to see more information.\n\nEvent Name: %s\nOrganizer Name: %s\nDate: %s\nLocation: %s\nPhone: %s\nEmail: %s\nDescription: %s" % (event.name, event.organizer_name,str(event.date), event.address,event.phone, event.email, event.description))
 
-
-    www.needlexchange.com/view-event/""" + str(event.id) +
-               "\n\n\nDebug Link: 10.194.29.0:9000/view-event/" + str(event.id))
     send_email(user.email, SUBJECT, MESSAGE)
 
 def send_email(dest, subject, content):
@@ -165,7 +160,7 @@ class User(db.Model):
     address = db.Column(db.String(200))
     radius = db.Column(db.Integer)
 
-    def __init__(self, email, address, radius=15):
+    def __init__(self, email, address, radius=25):
         # self.phone = phone
         self.email = email
         self.address = address

@@ -65,7 +65,11 @@ html, body {
     width: 345px;
 }
 
-#map-outer {  height: 440px;
+#tab-div {
+	max-height: 650px;
+}
+
+#map-outer {  height: 650px;
     padding: 20px;
     border: 2px solid #CCC;
     margin-bottom: 20px;
