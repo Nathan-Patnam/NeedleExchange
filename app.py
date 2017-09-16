@@ -48,7 +48,7 @@ def results():
 
 @app.route('/signup')
 def signup():
-    pass
+    return app.send_static_file('newUser.html')
 
 
 @app.route('/signup-friend')
