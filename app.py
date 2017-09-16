@@ -66,7 +66,9 @@ def find():
         event_list = []
         for event in Event.query.all():
             if distance_in_radius(address, event.address, RADIUS):
-                event_list.append({'name':event.name, 'date':event.date, 'address':event.address})
+                location = gmaps.geocode(event.address)[0]['geometry']['location']
+                event_list.append({'name':event.name, 'date':event.date, 'address':event.address,
+                                   'lat':location['lat'], 'lng':location['lng']})
     print (event_list)
     return jsonify(event_list)
 
@@ -76,7 +78,7 @@ def create_user():
         email = request.form.get('email')
         address = request.form.get('address')
         radius = RADIUS
-        #radius = request.form.get('radius')
+        # radius = request.form.get('radius')
         u = User(email, address, radius)
         db.session.add(u)
         db.session.commit()
