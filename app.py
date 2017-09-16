@@ -7,6 +7,8 @@ import googlemaps
 import yagmail
 
 
+RADIUS = 25
+
 gmaps = googlemaps.Client(key='AIzaSyCx09A62sA9i9D3mhi392t9X_aEk74rBf4')
 
 app = Flask(__name__, static_url_path='')
@@ -60,10 +62,10 @@ def signup_friend():
 def find():
     if request.method == 'POST':
         address = request.form.get('address')
-        radius = request.form.get('radius')
+        # radius = request.form.get('radius')
         event_list = []
         for event in Event.query.all():
-            if distance_in_radius(address, event.address, radius):
+            if distance_in_radius(address, event.address, RADIUS):
                 event_list.append({'name':event.name, 'date':event.date, 'address':event.address})
     print (event_list)
     return jsonify(event_list)
@@ -73,7 +75,8 @@ def create_user():
     if request.method == 'POST':
         email = request.form.get('email')
         address = request.form.get('address')
-        radius = request.form.get('radius')
+        radius = RADIUS
+        #radius = request.form.get('radius')
         u = User(email, address, radius)
         db.session.add(u)
         db.session.commit()
