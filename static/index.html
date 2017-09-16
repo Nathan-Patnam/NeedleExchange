@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="../Libraries/jQuery/jquery-3.2.1.min.js"></script>
-    <script src="../Libraries/Boostrap/js/bootstrap.js"></script>
+
     <link rel="stylesheet" href="../Libraries/Boostrap/css/bootstrap.css">
+    <link rel="stylesheet" href="homepage.css">
+
+
 </head>
 
 
 
 
-
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -34,7 +35,30 @@
     </div>
 </nav>
 
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-4 col-centered" id="zipcodeSearch">
 
+                <div class="input-group">
+                    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+
+                    <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+
+      </span>
+                </div>
+
+        </div>
+
+        </div>
+</div>
+<div id="map"></div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCx09A62sA9i9D3mhi392t9X_aEk74rBf4&libraries=places&callback=initAutocomplete"
+        async defer></script>
+<script src="../Libraries/jQuery/jquery-3.2.1.min.js"></script>
+<script src="../Libraries/Boostrap/js/bootstrap.js"></script>
+<script src="index.js"></script>
 </body>
 
 
