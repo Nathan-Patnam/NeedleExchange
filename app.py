@@ -23,17 +23,19 @@ def index():
 
 @app.route('/make-event')
 def make_event():
-    return 'hello'
+    return app.send_static_file('createEvent.html')
 
 @app.route('/view-event/<int:event_id>')
 def view_event(event_id):
     event = Event.query.filter_by(id=event_id)[0]
     d = {
         'name': event.name,
+        'organizer_name': event.organizer_name,
         'date': event.date.month + '-' + event.date.day + '-' + event.date.year,
         'time': event.date.hour + ':' + event.date.minute,
         'address': event.address,
         'phone': event.phone,
+        'description': event.description,
         'email': event.email
     }
     return jsonify(d)
@@ -46,7 +48,7 @@ def results():
 
 @app.route('/signup')
 def signup():
-    pass
+    return app.send_static_file('newUser.html')
 
 
 @app.route('/signup-friend')
@@ -74,7 +76,8 @@ def create_user():
         radius = request.form.get('radius')
         u = User(email, address, radius)
         db.session.add(u)
-        db.commit()
+        db.session.commit()
+    return jsonify({"status":"ok"})
 
 @app.route('/create-event', methods=['POST'])
 def create_event():
@@ -83,21 +86,22 @@ def create_event():
 
         ## FIXME
         dt = datetime.datetime(
-            request.form.get('year'),
-            request.form.get('month'),
-            request.form.get('day'),
-            request.form.get('hour'),
-            request.form.get('minute')
+            int(request.form.get('year')),
+            int(request.form.get('month')),
+            int(request.form.get('day')),
+            int(request.form.get('hour')),
+            int(request.form.get('minute'))
         )
         address = request.form.get('address')
         phone = request.form.get('phone')
         email = request.form.get('email')
-        days_repeat = request.form.get('repeat')
         description = request.form.get('description')
-        e = Event(name, dt, address, description, phone=phone, email=email, days_repeat=days_repeat)
+        organizer_name = request.form.get('organizer_name')
+        e = Event(name, organizer_name, dt, address, description, phone=phone, email=email)
         db.session.add(e)
-        db.commit()
+        db.session.commit()
         notify_users_about_event(e)
+    return jsonify({"status":"ok"})
 
 
 def notify_users_about_event(event):
@@ -131,6 +135,7 @@ def send_email(dest, subject, content):
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
+    organizer_name = db.Column(db.String(100))
     date = db.Column(db.DateTime)
     address = db.Column(db.String(200))
     phone = db.Column(db.String(15))
@@ -139,9 +144,10 @@ class Event(db.Model):
     description = db.Column(db.Text)
 
 
-    def __init__(self, name, date, address, description, phone=None,
+    def __init__(self, name, organizer_name, date, address, description, phone=None,
                  email=None):
         self.name = name
+        self.organizer_name = organizer_name
         self.date = date
         self.address = address
         self.phone = phone
