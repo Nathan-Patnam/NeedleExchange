@@ -22,7 +22,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Needle Xchange</a>
+            <a class="navbar-brand" href="#">NeedleXchange</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -36,21 +36,32 @@
 
 
 <div class="container">
-    <div class="row ">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input type="text" class="form-control" id="pac-input" placeholder="Enter Your Address" required>
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Radius (miles) <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">10</a></li>
+                        <li><a href="#">15</a></li>
+                        <li><a href="#">25</a></li>
+                        <li><a href="#">50</a></li>
 
-
-
-                <div id="searchContent" style="text-align: center">
-                    <input id="pac-input" class="controls" name="userAddress" type="text" placeholder="Enter your address" required>
+                    </ul>
                     <button onclick="sendAddress()" class="btn btn-primary">Find</button>
-                </div>
-
-
-
-
-
+                </div><!-- /btn-group -->
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
     </div>
 </div>
+
+
+
+
+
+
 
 <div class="container">
     <div class="row">

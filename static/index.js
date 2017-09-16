@@ -1,4 +1,12 @@
 
+// when clicking Dropdown will change
+$(".dropdown-menu li a").click(function(){
+    var selText = $(this).text();
+    $(this).parents('.input-group-btn').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
+});
+
+
+
 // This example adds a search box to a map, using the Google Place Autocomplete
 // feature. People can enter geographical searches. The search box will return a
 // pick list containing a mix of places and predicted search terms.
@@ -41,27 +49,49 @@ function initAutocomplete() {
     })
 }
 
+
 function sendAddress(){
+
     var userAddress =  $("#pac-input").val();
+    var radiusPreference = $(".dropdown-toggle").text();
+
     var sendInfo={
-        address:userAddress
+        address:userAddress,
+        radius:radiusPreference
     };
+
 
     $.ajax({
         url: "http://10.194.29.0:9000/find",
-        type: "POST",
+        type: "post",
         dataType: "json",
         success: function (msg) {
             if (msg) {
-                alert("Somebody" + name + " was added in list !");
-                location.reload(true);
+                populateResults(msg);
+
             } else {
                 alert("Cannot add to list !");
             }
         },
-
-
         data: sendInfo
     });
 
 }
+
+
+function populateResults(data){
+    console.log(data);
+}
+
+/**
+ * code for sending data from a form
+
+ $(function(){
+    $('form[name=userAddress]').submit(function(){
+        $.post($(this).attr('action'), $(this).serialize(), function(json) {
+           console.log(json);
+        }, 'json');
+        return false;
+    });
+});
+ **/
