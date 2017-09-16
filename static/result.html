@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    <link rel="stylesheet" href="Libraries/Boostrap/css/bootstrap.css">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="homepage.css">
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Needle Xchange</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Refer a Friend  <i class="fa fa-user-plus"></i></a></li>
+                <li><a href="#">Sign Up  <i class="fa fa-user-plus"></i></a></li>
+                <li><a href="#">Create Event  <i class="fa fa-user"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+		<div id="event_list" class="col-sm-3">
+			<div id="map-outer" class="col-md-12">
+				<div id="map" class="col-md-12"></div>
+			</div><!-- /map-outer -->
+		</div>
+		<div id="event_map" class="col-sm-9">
+			<div id="map"></div>
+		</div>
+    </div>
+</div>
+<script src="Libraries/jQuery/jquery-3.2.1.min.js"></script>
+<script src="Libraries/Boostrap/js/bootstrap.js"></script>
+<script src="index.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCx09A62sA9i9D3mhi392t9X_aEk74rBf4&libraries=places&callback=initAutocomplete" async defer></script>
+<script>
+function initAutocomplete() {
+var latlng = new google.maps.LatLng(37.09024, -95.712891);
+    var myOptions = {
+        zoom: 5,
+        center: latlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map"), myOptions);
+}
+</script>
+
+
+
+</body>
+
+
+</html>
