@@ -22,35 +22,35 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">NeedleXchange</a>
+            <a class="navbar-brand" href="index.html">NeedleXchange</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Refer a Friend  <i class="fa fa-user-plus"></i></a></li>
                 <li><a href="#">Sign Up  <i class="fa fa-user-plus"></i></a></li>
-                <li><a href="#">Create Event  <i class="fa fa-user"></i></a></li>
+                <li><a href="createEvent.html">Create Event  <i class="fa fa-user"></i></a></li>
             </ul>
         </div>
     </div>
 </nav>
 
 
-<div class="container">
+<div id="main-body" class="container">
     <div class="row">
-        <div class="col-lg-4">
+        <div id="tab-div" class="col-lg-4">
 			<ul class="nav nav-tabs">
 				<li class="active"><a data-toggle="tab" href="#searchTab">Search</a></li>
 				<li><a data-toggle="tab" href="#subscribeTab">Subscribe</a></li>
 			</ul>
 			<div class="tab-content">
 				<div id="searchTab" class="tab-pane fade in active">
-					<form class="">
+					<form onsubmit="return sendAddress()">
 						<p>Enter your zip code to find Needle Exchanges in your area.</p>
 						<div class="form-group">
 							<label for="zipSearch">Zip Code</label>
 							<input type="number" class="form-control" id="zipSearch" placeholder="00000" required>
 						</div><!-- /input-group -->
-						<button type="submit" class="btn btn-default">Search</button>
+						<button type="submit" id="pac-input" class="btn btn-default">Search</button>
 					</form>
 				</div>
 				<div id="subscribeTab" class="tab-pane fade">
@@ -63,7 +63,7 @@
 						</div><!-- /input-group -->
 						<div class="form-group">
 							<label for="userEmail">Email Address</label>
-							<input type="email" class="form-control" id="zipSearch" placeholder="email@example.com" required>
+							<input type="email" class="form-control" id="userEmail" placeholder="email@example.com" required>
 						</div><!-- /input-group -->
 						<button type="submit" class="btn btn-default">Subscribe</button>
 					</form>
