@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="Libraries/Boostrap/css/bootstrap.css">
     <link rel="stylesheet" href="homepage.css">
+
 </head>
 <body>
 
@@ -36,94 +37,44 @@
 
 <div class="container">
     <div class="row ">
-        <div class="col-lg-4 col-sm-6">
-            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
 
-        </div>
+
+
+                <div id="searchContent" style="text-align: center">
+                    <input id="pac-input" class="controls" name="userAddress" type="text" placeholder="Enter your address" required>
+                    <button onclick="sendAddress()" class="btn btn-primary">Find</button>
+                </div>
+
+
+
+
+
     </div>
 </div>
-<div id="map"></div>
-<script>
-    // This example adds a search box to a map, using the Google Place Autocomplete
-    // feature. People can enter geographical searches. The search box will return a
-    // pick list containing a mix of places and predicted search terms.
 
-    // This example requires the Places library. Include the libraries=places
-    // parameter when you first load the API. For example:
-    // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+<div class="container">
+    <div class="row">
+        <div id="map-outer" class="col-md-12">
+            <div id="map" class="col-md-12"></div>
+        </div><!-- /map-outer -->
+    </div> <!-- /row -->
 
-    function initAutocomplete() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -33.8688, lng: 151.2195},
-            zoom: 13,
-            mapTypeId: 'roadmap'
-        });
-
-        // Create the search box and link it to the UI element.
-        var input = document.getElementById('pac-input');
-        var searchBox = new google.maps.places.SearchBox(input);
-
-
-        // Bias the SearchBox results towards current map's viewport.
-        map.addListener('bounds_changed', function() {
-            searchBox.setBounds(map.getBounds());
-        });
-
-        var markers = [];
-        // Listen for the event fired when the user selects a prediction and retrieve
-        // more details for that place.
-        searchBox.addListener('places_changed', function() {
-            var places = searchBox.getPlaces();
-
-            if (places.length == 0) {
-                return;
-            }
-
-            // Clear out the old markers.
-            markers.forEach(function(marker) {
-                marker.setMap(null);
-            });
-            markers = [];
-
-            // For each place, get the icon, name and location.
-            var bounds = new google.maps.LatLngBounds();
-            places.forEach(function(place) {
-                if (!place.geometry) {
-                    console.log("Returned place contains no geometry");
-                    return;
-                }
-                var icon = {
-                    url: place.icon,
-                    size: new google.maps.Size(71, 71),
-                    origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(17, 34),
-                    scaledSize: new google.maps.Size(25, 25)
-                };
-
-                // Create a marker for each place.
-                markers.push(new google.maps.Marker({
-                    map: map,
-                    icon: icon,
-                    title: place.name,
-                    position: place.geometry.location
-                }));
-
-                if (place.geometry.viewport) {
-                    // Only geocodes have viewport.
-                    bounds.union(place.geometry.viewport);
-                } else {
-                    bounds.extend(place.geometry.location);
-                }
-            });
-            map.fitBounds(bounds);
-        });
-    }
-
-</script>
 <!-- Load Scripts-->
 <script src="Libraries/jQuery/jquery-3.2.1.min.js"></script>
 <script src="Libraries/Boostrap/js/bootstrap.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCx09A62sA9i9D3mhi392t9X_aEk74rBf4&libraries=places&callback=initAutocomplete"
         async defer></script>
+<script src="index.js"></script>
 </body>
 </html>
+
+
+
+<!-- <form style="display:inline-block" id="searchZipcode" class="form-inline" method="post" action="http://10.194.29.0:9000/find">
+
+                <div id="searchContent" style="text-align: center">
+                    <input id="pac-input" class="controls" name="userAddress" type="text" placeholder="Enter your address" required>
+                    <button type="submit" class="btn btn-primary">Find</button>
+                </div>
+
+            </form>-->
