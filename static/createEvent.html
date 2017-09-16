@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="Libraries/Boostrap/css/bootstrap.css">
     <link rel="stylesheet" href="global.css">
     <link rel="stylesheet" href="homepage.css">
+
 </head>
 <body>
 <nav class="navbar navbar-default navbar-static-top">
@@ -32,30 +33,30 @@
 <div class="container">
     <div class="row">
 		<h2 class="text-center">Create a new NeedleXchange Event</h2>
-		<form>
+		<form onsubmit="return sendData()">
 			<div class="form-group">
 				<label for="eventName">Event Name</label>
-				<input type="text" class="form-control" id="eventName" placeholder="My NeedleXchange Event">
+				<input type="text" class="form-control" id="eventName" placeholder="My NeedleXchange Event" required>
 			</div>
 			<div class="form-group">
 				<label for="eventLocation">Event Location</label>
-				<input type="text" class="form-control" id="eventLocation" placeholder="1 Brick Rd, My City 12345">
+				<input type="text" class="form-control" id="eventLocation" placeholder="1 Brick Rd, My City 12345" required>
 			</div>
 			<div class="form-group">
 				<label for="eventDescription">Event Description</label>
-				<textarea class="form-control" id="eventDescription" rows="3" placeholder="Ennter a brief description."></textarea>
+				<textarea class="form-control" id="eventDescription" rows="3" placeholder="Enter a brief description." required></textarea>
 			</div>
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="form-group">
 						<label for="eventDate">Event Date</label>
-						<input type="date" class="form-control" id="eventDate" placeholder="09/16/2017">
+						<input type="date" class="form-control" id="eventDate" placeholder="09/16/2017" required>
 					</div>
 				</div>
 				<div class="col-sm-6">
 					<div class="form-group">
 						<label for="eventTime">Event Time</label>
-						<input type="time" class="form-control" id="eventTime">
+						<input type="time" class="form-control" id="eventTime" required>
 					</div>				
 				</div>
 			</div>
@@ -68,22 +69,23 @@
 			<hr>
 			<div class="form-group">
 				<label for="organizerName">Organizer's Name</label>
-				<input type="text" class="form-control" id="organizerName" placeholder="Jane Doe">
+				<input type="text" class="form-control" id="organizerName" placeholder="Jane Doe" required>
 			</div>
 			<div class="form-group">
 				<label for="organizerEmail">Organizer's Email</label>
-				<input type="email" class="form-control" id="organizerEmail" placeholder="email@example.com">
+				<input type="email" class="form-control" id="organizerEmail" placeholder="email@example.com" required>
 			</div>
 			<div class="form-group">
 				<label for="organizerPhone">Organizer's Phone</label>
-				<input type="tel" class="form-control" id="organizerPhone" placeholder="(123)-456-7890">
+				<input type="tel" class="form-control" id="organizerPhone" placeholder="(123)-456-7890" required>
 			</div>
-			<button type="submit" class="btn btn-default">Submit</button>
+			<button  type="submit" class="btn btn-default">Submit</button>
 		</form>
 	</div>
 </div>
+
 <script src="Libraries/jQuery/jquery-3.2.1.min.js"></script>
+<script src="createEvent.js"></script>
 <script src="Libraries/Boostrap/js/bootstrap.js"></script>
-</script>
 </body>
 </html>
