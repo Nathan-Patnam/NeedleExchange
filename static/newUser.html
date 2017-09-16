@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="Libraries/Boostrap/css/bootstrap.css">
     <link rel="stylesheet" href="global.css">
     <link rel="stylesheet" href="homepage.css">
+
 </head>
 <body>
 <nav class="navbar navbar-default navbar-static-top">
@@ -33,7 +34,7 @@
 <div class="container">
     <div class="row">
 		<h1 class="text-center">Register New User</h1>
-		<form>
+		<form onsubmit="return sendData()">
 			<div class="form-group">
 				<label for="userEmail">User Email</label>
 				<input type="email" class="form-control" id="userEmail" placeholder="email@example.com" required>
@@ -60,6 +61,6 @@
 </div>
 <script src="Libraries/jQuery/jquery-3.2.1.min.js"></script>
 <script src="Libraries/Boostrap/js/bootstrap.js"></script>
-</script>
+<script src="newUser.js"></script>
 </body>
 </html>

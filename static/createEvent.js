@@ -1,7 +1,6 @@
 
 
 function sendData(){
-        console.log("function is being called");
         var eventName = $("#eventName").val();
         var address= $("#eventLocation").val();
         var description= $("#eventDescription").val();

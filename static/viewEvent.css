@@ -1,0 +1,53 @@
+
+
+/* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+#map {
+    height: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+
+#description {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+#searchContent{
+    display:inline;
+}
+
+
+#infowindow-content .title {
+    font-weight: bold;
+}
+
+#infowindow-content {
+    display: none;
+}
+
+#map #infowindow-content {
+    display: inline;
+}
+
+
+#title {
+    color: #fff;
+    background-color: #4d90fe;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 6px 12px;
+}
+#target {
+    width: 345px;
+}
+
+#map-outer {  height: 440px;
+
+    border: 2px solid #CCC;
+
+    background-color:#FFF }
+#map-container { height: 400px }
+@media all and (max-width: 991px) {
+    #map-outer  { height: 650px }
+}
