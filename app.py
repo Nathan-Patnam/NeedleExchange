@@ -69,8 +69,9 @@ def find():
             if dist <= RADIUS:
                 location = gmaps.geocode(event.address)[0]['geometry']['location']
                 event_list.append({'name':event.name, 'date':event.date, 'address':event.address,
-                                   'lat':location['lat'], 'lng':location['lng'], 'dist':dist})
-    event_list.sort(key=lambda event: event['dist'], reverse=True)
+                                   'lat':location['lat'], 'lng':location['lng'], 'dist':dist, 'phone':event.phone,
+                                   'email':event.email, 'organizer_name':event.organizer_name})
+    event_list.sort(key=lambda event: event['dist'], reverse=False)
     print (event_list)
     return jsonify(event_list)
 
@@ -113,7 +114,7 @@ def create_event():
 
 def notify_users_about_event(event):
     for user in User.query.all():
-        if distance_in_radius(user.address, event.address, user.radius):
+        if distance(user.address, event.address) <= RADIUS:
             notify_user(user, event)
 
 
