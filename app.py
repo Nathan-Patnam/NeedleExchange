@@ -43,21 +43,6 @@ def view_event(event_id):
     return jsonify(d)
         
 
-@app.route('/results')
-def results():
-    pass
-
-
-@app.route('/signup')
-def signup():
-    return app.send_static_file('newUser.html')
-
-
-@app.route('/signup-friend')
-def signup_friend():
-    pass
-
-
 @app.route('/find', methods=['POST'])
 def find():
     if request.method == 'POST':
