@@ -66,7 +66,9 @@ def find():
         event_list = []
         for event in Event.query.all():
             if distance_in_radius(address, event.address, RADIUS):
-                event_list.append({'name':event.name, 'date':event.date, 'address':event.address})
+                location = gmaps.geocode(event.address)[0]['geometry']['location']
+                event_list.append({'name':event.name, 'date':event.date, 'address':event.address,
+                                   'lat':location['lat'], 'lng':location['lng']})
     print (event_list)
     return jsonify(event_list)
 
@@ -76,7 +78,7 @@ def create_user():
         email = request.form.get('email')
         address = request.form.get('address')
         radius = RADIUS
-        #radius = request.form.get('radius')
+        # radius = request.form.get('radius')
         u = User(email, address, radius)
         db.session.add(u)
         db.session.commit()
@@ -120,6 +122,7 @@ def distance_in_radius(loc1, loc2, radius):
 
 def notify_user(user, event):
     SUBJECT = "Needle Exchange Event Near You"
+    # sorry for how disgusting this is
     MESSAGE = ("You are recieving this message to notify you about a needle exchange event.\nSee below to see more information.\n\nEvent Name: %s\nOrganizer Name: %s\nDate: %s\nLocation: %s\nPhone: %s\nEmail: %s\nDescription: %s" % (event.name, event.organizer_name,str(event.date), event.address,event.phone, event.email, event.description))
 
     send_email(user.email, SUBJECT, MESSAGE)
