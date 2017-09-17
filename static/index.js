@@ -1,4 +1,7 @@
 
+
+var map;
+
 // when clicking Dropdown will change
 $(".dropdown-menu li a").click(function(){
     var selText = $(this).text();
@@ -22,31 +25,10 @@ function initAutocomplete() {
         center: latlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    var map = new google.maps.Map(document.getElementById("map"), myOptions);
+    map = new google.maps.Map(document.getElementById("map"), myOptions);
 
 
 
-    // Create the search box and link it to the UI element.
-    var input = document.getElementById('pac-input');
-    var searchBox = new google.maps.places.SearchBox(input);
-
-
-    // Bias the SearchBox results towards current map's viewport.
-    map.addListener('bounds_changed', function() {
-        searchBox.setBounds(map.getBounds());
-    });
-
-    var markers = [];
-    // Listen for the event fired when the user selects a prediction and retrieve
-    // more details for that place.
-    searchBox.addListener('places_changed', function() {
-        var places = searchBox.getPlaces();
-
-        if (places.length == 0) {
-            return;
-        }
-
-    })
 }
 
 
@@ -79,7 +61,19 @@ function sendAddress(){
 
 
 function populateResults(data){
+    console.log(data);
 
+    for (var i = 0; i < data.length; i++){
+        var latLng = new google.maps.LatLng(data[i].lat, data[i].lng);
+        var marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+        });
+
+        map.setZoom(15);
+        map.setCenter(marker.getPosition());
+
+    }
 }
 
 /**
