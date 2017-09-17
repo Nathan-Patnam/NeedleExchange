@@ -52,12 +52,11 @@ function initAutocomplete() {
 
 function sendAddress(){
 
-    var userAddress =  $("#pac-input").val();
-    var radiusPreference = $(".dropdown-toggle").text();
+    var userAddress =  $("#zipSearch").val();
+
 
     var sendInfo={
-        address:userAddress,
-        radius:radiusPreference
+        address:userAddress
     };
 
 
@@ -80,7 +79,7 @@ function sendAddress(){
 
 
 function populateResults(data){
-    console.log(data);
+
 }
 
 /**
