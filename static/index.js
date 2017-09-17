@@ -33,15 +33,10 @@ function initAutocomplete() {
 
 
 function sendAddress(){
-
     var userAddress =  $("#zipSearch").val();
-
-
     var sendInfo={
         address:userAddress
     };
-
-
     $.ajax({
         url: "http://10.194.29.0:9000/find",
         type: "post",
@@ -56,24 +51,53 @@ function sendAddress(){
         },
         data: sendInfo
     });
+}
 
+function sendSubscriber(){
+    var subscriberAddress =  $("#userZip").val();
+    var subscriberEmail =  $("#userEmail").val();
+    var sendInfo={
+        address:subscriberAddress,
+        email:subscriberEmail
+    };
+    $.ajax({
+        url: "http://10.194.29.0:9000/create-user",
+        type: "post",
+        dataType: "json",
+        success: function (msg) {
+            if (msg) {
+                populateResults(msg);
+
+            } else {
+                alert("Cannot add to list !");
+            }
+        },
+        data: sendInfo
+    });
 }
 
 
 function populateResults(data){
     console.log(data);
+    $('#searchResults').empty(".eventDiv");
+    var htmlString="";
+
 
     for (var i = 0; i < data.length; i++){
+       htmlString+="<div class=\"eventDiv\">"+"<h4 class=\"text-center\">"+data[i].name+"</h4><address><strong>Event Location</strong><br>"+data[i].address+"<br>"+"Distance: "+data[i].dist+"km"+ "</address>"+"<strong>Organizer</strong><br>"+data[i].organizer_name+"<br>"+"Phone: "+data[i].phone+"<br>"+"Email: "+data[i].email+"<br></div>";
         var latLng = new google.maps.LatLng(data[i].lat, data[i].lng);
         var marker = new google.maps.Marker({
             position: latLng,
             map: map
         });
 
-        map.setZoom(15);
-        map.setCenter(marker.getPosition());
+        if (i===0) {
+            map.setZoom(15);
+            map.setCenter(marker.getPosition());
+        }
 
     }
+    $('#searchResults').append(htmlString);
 }
 
 /**

@@ -22,17 +22,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">NeedleXchange</a>
+            <a class="navbar-brand" href="index.html">NeedleXchange</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-<<<<<<< HEAD
                 <li><a href="createEvent.html">Create Event  <i class="fa fa-user"></i></a></li>
-=======
-                <li><a href="#">Refer a Friend  <i class="fa fa-user-plus"></i></a></li>
-                <li><a href="#">Sign Up  <i class="fa fa-user-plus"></i></a></li>
-                <li><a href="#">Create Event  <i class="fa fa-user"></i></a></li>
->>>>>>> origin/master
+
             </ul>
         </div>
     </div>
@@ -48,7 +43,7 @@
 			</ul>
 			<div class="tab-content">
 				<div id="searchTab" class="tab-pane fade in active">
-					<form class="">
+					<form onsubmit="return sendAddress()">
 						<p>Search for Needle Exchanges near your zip code.</p>
 						<div class="form-group">
 							<label for="zipSearch">Zip Code</label>
@@ -75,7 +70,7 @@
 							<strong>Organizer</strong><br>
 							Sarah Smith<br>
 							Phone: (610) 867-4741<br>
-							Email: email@email.com<br>							
+							Email: email@email.com<br>
 						</div>
 						<div class="eventDiv">
 							<h4 class="text-center">Event Name</h4>
@@ -88,12 +83,12 @@
 							<strong>Organizer</strong><br>
 							Sarah Smith<br>
 							Phone: (610) 867-4741<br>
-							Email: email@email.com<br>							
-						</div>						
+							Email: email@email.com<br>
+						</div>
 					</div>
 				</div>
 				<div id="subscribeTab" class="tab-pane fade">
-					<form class="">
+					<form onsubmit="return sendSubscriber()">
 						<p>Enter your zip code and email to subscribe to email notifications.</p>
 						<p>You'll receive notifications when new events are created in your area.</p>
 						<div class="form-group">
