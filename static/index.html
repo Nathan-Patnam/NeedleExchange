@@ -22,13 +22,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">NeedleXchange</a>
+            <a class="navbar-brand" href="#">NeedleXchange</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Refer a Friend  <i class="fa fa-user-plus"></i></a></li>
                 <li><a href="#">Sign Up  <i class="fa fa-user-plus"></i></a></li>
-                <li><a href="createEvent.html">Create Event  <i class="fa fa-user"></i></a></li>
+                <li><a href="#">Create Event  <i class="fa fa-user"></i></a></li>
             </ul>
         </div>
     </div>
@@ -44,14 +44,49 @@
 			</ul>
 			<div class="tab-content">
 				<div id="searchTab" class="tab-pane fade in active">
-					<form onsubmit="return sendAddress()">
-						<p>Enter your zip code to find Needle Exchanges in your area.</p>
+					<form class="">
+						<p>Search for Needle Exchanges near your zip code.</p>
 						<div class="form-group">
 							<label for="zipSearch">Zip Code</label>
-							<input type="number" class="form-control" id="zipSearch" placeholder="00000" required>
-						</div><!-- /input-group -->
-						<button type="submit" id="pac-input" class="btn btn-default">Search</button>
+							<div class="row">
+								<div class="col-xs-8">
+									<input type="number" class="form-control" id="zipSearch" placeholder="00000" required>							
+								</div>
+								<div class="col-xs-4">
+									<button type="submit" class="btn btn-default">Search</button>								
+								</div>
+							</div>
+						</div><!-- /input-group -->							
+						
 					</form>
+					<div id="searchResults" class="tab-content">
+						<div class="eventDiv">
+							<h4 class="text-center">Event Name</h4>
+							<address>
+								<strong>Event Location</strong><br>
+								44 E Market St<br>
+								Bethlehem, PA 18018<br>
+								Phone: (610) 867-4741
+							</address>
+							<strong>Organizer</strong><br>
+							Sarah Smith<br>
+							Phone: (610) 867-4741<br>
+							Email: email@email.com<br>							
+						</div>
+						<div class="eventDiv">
+							<h4 class="text-center">Event Name</h4>
+							<address>
+								<strong>Event Location</strong><br>
+								44 E Market St<br>
+								Bethlehem, PA 18018<br>
+								Phone: (610) 867-4741
+							</address>
+							<strong>Organizer</strong><br>
+							Sarah Smith<br>
+							Phone: (610) 867-4741<br>
+							Email: email@email.com<br>							
+						</div>						
+					</div>
 				</div>
 				<div id="subscribeTab" class="tab-pane fade">
 					<form class="">

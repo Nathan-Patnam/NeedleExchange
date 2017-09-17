@@ -21,6 +21,11 @@ html, body {
     display:inline;
 }
 
+#searchResults{
+	max-height: 400px;
+	overflow:auto;
+}
+
 
 #infowindow-content .title {
     font-weight: bold;
@@ -36,6 +41,13 @@ html, body {
 
 .tab-content{
 	padding:5%;
+}
+
+.eventDiv{
+	border-bottom-color:#CCC;
+	border-bottom-weight:2px;
+	border-bottom-style:solid;
+	padding-bottom:10px;
 }
 
 
@@ -63,10 +75,6 @@ html, body {
 }
 #target {
     width: 345px;
-}
-
-#tab-div {
-	max-height: 650px;
 }
 
 #map-outer {  height: 650px;
