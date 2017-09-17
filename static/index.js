@@ -33,6 +33,7 @@ function initAutocomplete() {
 
 
 function sendAddress(){
+
     var userAddress =  $("#zipSearch").val();
     var sendInfo={
         address:userAddress
@@ -51,6 +52,7 @@ function sendAddress(){
         },
         data: sendInfo
     });
+    return false;
 }
 
 function sendSubscriber(){
@@ -66,7 +68,7 @@ function sendSubscriber(){
         dataType: "json",
         success: function (msg) {
             if (msg) {
-                populateResults(msg);
+               console.log("cool");
 
             } else {
                 alert("Cannot add to list !");
@@ -74,6 +76,7 @@ function sendSubscriber(){
         },
         data: sendInfo
     });
+    return false;
 }
 
 
@@ -98,6 +101,7 @@ function populateResults(data){
 
     }
     $('#searchResults').append(htmlString);
+    return false;
 }
 
 /**
