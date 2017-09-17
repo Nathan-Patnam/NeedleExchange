@@ -7,7 +7,7 @@ import googlemaps
 import yagmail
 
 
-RADIUS = 25
+RADIUS = 500
 
 gmaps = googlemaps.Client(key='AIzaSyCx09A62sA9i9D3mhi392t9X_aEk74rBf4')
 
@@ -65,10 +65,12 @@ def find():
         # radius = request.form.get('radius')
         event_list = []
         for event in Event.query.all():
-            if distance_in_radius(address, event.address, RADIUS):
+            dist = distance(address, event.address)
+            if dist <= RADIUS:
                 location = gmaps.geocode(event.address)[0]['geometry']['location']
                 event_list.append({'name':event.name, 'date':event.date, 'address':event.address,
-                                   'lat':location['lat'], 'lng':location['lng']})
+                                   'lat':location['lat'], 'lng':location['lng'], 'dist':dist})
+    event_list.sort(key=lambda event: event['dist'], reverse=True)
     print (event_list)
     return jsonify(event_list)
 
@@ -115,10 +117,10 @@ def notify_users_about_event(event):
             notify_user(user, event)
 
 
-def distance_in_radius(loc1, loc2, radius):
+def distance(loc1, loc2):
     distance = float(gmaps.distance_matrix(
                 loc1, loc2)['rows'][0]['elements'][0]['distance']['text'].split(' ')[0].replace(',',''))
-    return distance < float(radius)
+    return distance
 
 def notify_user(user, event):
     SUBJECT = "Needle Exchange Event Near You"
